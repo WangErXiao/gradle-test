@@ -1,19 +1,16 @@
-task helloWorld << {
-    println "Hello World!"
-}
+task combineFileContentNonIncremental{
 
-task hello1{
+    def sources=fileTree('source')
+    def destination=file('destination.txt')
     doLast{
-        println 'hello1'
+        destination.withPrintWriter{
+            writer ->
+                sources.each{
+                    source ->
+                        writer.println source.text
+                }
+        }
+    
     }
-}
 
-task copyFile(type:Copy,dependsOn:helloWorld){
-    from 'xml'
-    into 'destination'
-}
-
-task showTasks{
-    println tasks.class
-    println tasks.size()
 }

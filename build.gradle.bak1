@@ -1,0 +1,47 @@
+task helloWorld << {
+    println "Hello World!"
+}
+
+task hello1{
+    doLast{
+        println 'hello1'
+    }
+}
+
+task hello7 <<{
+    description ="this is hello 7"
+    println description
+}
+
+task hello9 << {
+    println description
+}
+hello9.configure{
+    description = "this is hello9"
+}
+
+task showDescription1 << {   
+      description = 'this is task showDescription'   
+            println description
+}
+task showDescription2 << {   
+      println description
+}
+showDescription2.description = 'this is task showDescription'
+task showDescription3 << {   
+      println description
+}
+showDescription3 {   
+      description = 'this is task showDescription'
+}
+
+
+task copyFile(type:Copy,dependsOn:helloWorld){
+    from 'xml'
+    into 'destination'
+}
+
+task showTasks{
+    println tasks.class
+    println tasks.size()
+}
