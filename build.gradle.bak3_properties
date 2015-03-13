@@ -1,0 +1,11 @@
+version = 'this is  the project version'
+description = 'this is the project description'
+
+ext{
+    property2 ="this is property2"
+}
+task showProjectProperties << {
+    println version
+    println project.description
+    println property2
+}
